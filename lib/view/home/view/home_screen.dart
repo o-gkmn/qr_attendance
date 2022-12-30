@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -26,10 +28,6 @@ class HomeScreenView extends StatelessWidget {
         verticalDirection: VerticalDirection.down,
         children: [
           _BiruniLogo(),
-          const Text("Oturum Açın"),
-          const Spacer(
-            flex: 2,
-          ),
           _MailBox(),
           const SizedBox(
             height: 12,
@@ -37,7 +35,6 @@ class HomeScreenView extends StatelessWidget {
           _PasswordBox(),
           _RememberMe(),
           _LoginButton(),
-          const Spacer(flex: 2),
         ],
       ),
     );
@@ -47,9 +44,19 @@ class HomeScreenView extends StatelessWidget {
 class _BiruniLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const CircleAvatar(
-        backgroundImage: AssetImage('assets/biruni_logo.jpg'),
-        radius: 125);
+    double height = MediaQuery.of(context).size.height - Scaffold.of(context).appBarMaxHeight!;
+    double radius = height / (2*pi);
+    return Flexible(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          CircleAvatar(
+              backgroundImage: const AssetImage('assets/biruni_logo.jpg'),
+              radius:radius),
+          Text("Oturum Açın", style: Theme.of(context).textTheme.headline6,),
+        ],
+      ),
+    );
   }
 }
 
