@@ -1,6 +1,7 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
+
+enum IsCheck { remember, forget }
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -9,7 +10,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Yoklama Sistemi"),
+        title: const Text("Biruni Üniversitesi"),
         centerTitle: true,
       ),
       body: const HomeScreenView(),
@@ -44,16 +45,20 @@ class HomeScreenView extends StatelessWidget {
 class _BiruniLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height - Scaffold.of(context).appBarMaxHeight!;
-    double radius = height / (2*pi);
+    double height = MediaQuery.of(context).size.height -
+        Scaffold.of(context).appBarMaxHeight!;
+    double radius = height / (2 * pi);
     return Flexible(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           CircleAvatar(
               backgroundImage: const AssetImage('assets/biruni_logo.jpg'),
-              radius:radius),
-          Text("Oturum Açın", style: Theme.of(context).textTheme.headline6,),
+              radius: radius),
+          Text(
+            "Oturum Açın",
+            style: Theme.of(context).textTheme.headline6,
+          ),
         ],
       ),
     );
@@ -79,7 +84,6 @@ class _MailBox extends StatelessWidget {
           borderRadius: BorderRadius.circular(12.0),
         ),
         labelText: "Email",
-        labelStyle: Theme.of(context).textTheme.labelMedium,
         prefixIcon: Icon(
           Icons.mail,
           color: Theme.of(context).iconTheme.color,
@@ -108,7 +112,6 @@ class _PasswordBox extends StatelessWidget {
           borderRadius: BorderRadius.circular(12.0),
         ),
         labelText: "Şifre",
-        labelStyle: Theme.of(context).textTheme.labelMedium,
         prefixIcon: Icon(
           Icons.password,
           color: Theme.of(context).iconTheme.color,
@@ -119,18 +122,29 @@ class _PasswordBox extends StatelessWidget {
   }
 }
 
-class _RememberMe extends StatelessWidget {
+class _RememberMe extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _RememberMeState();
+  }
+}
+
+class _RememberMeState extends State {
+  var isChecked = false;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.topLeft,
-      child: ListTile(
-        title: const Text("Beni Hatırla"),
-        leading: Radio(
-            value: "RemeberMe",
-            groupValue: "remember",
-            onChanged: (String? value) {}),
-      ),
+    return Row(
+      children: [
+        Checkbox(
+            activeColor: Colors.blue,
+            value: isChecked,
+            onChanged: (value) {
+              setState(() {
+              isChecked = !isChecked;
+              });
+            }),
+        const Text("Beni Hatırla"),
+      ],
     );
   }
 }
