@@ -10,6 +10,7 @@ class App extends StatelessWidget{
   Widget build(BuildContext context) {
     CustomThemeData customTheme = CustomThemeData(isDark: false);
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: customTheme.themeData,
       onGenerateRoute: PageRouter.generateRoute,
       initialRoute: "/",

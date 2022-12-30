@@ -1,8 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 
-enum IsCheck { remember, forget }
-
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
