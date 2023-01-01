@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:qr_attendance/view/home/validation/validation.dart';
+import 'package:qr_attendance/view/home/validation/login_validation.dart';
+import 'package:qr_attendance/view/widgets/custom_alert_dialog.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -96,16 +97,14 @@ class _LoginForm extends StatefulWidget {
   }
 }
 
-class _LogiFormState extends State<_LoginForm>
-    with TickerProviderStateMixin, ValidationMixin {
+class _LogiFormState extends State<_LoginForm> {
   final _mailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   var isChecked = false;
 
   Widget _mailBox() {
-    return TextFormField(
+    return TextField(
       controller: _mailController,
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
@@ -129,12 +128,11 @@ class _LogiFormState extends State<_LoginForm>
           color: Theme.of(context).iconTheme.color,
         ),
       ),
-      validator: mailBoxValidation,
     );
   }
 
   Widget _passwordBox() {
-    return TextFormField(
+    return TextField(
       controller: _passwordController,
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
@@ -159,7 +157,6 @@ class _LogiFormState extends State<_LoginForm>
         ),
       ),
       obscureText: true,
-      validator: passwordBoxValidation,
     );
   }
 
@@ -189,10 +186,9 @@ class _LogiFormState extends State<_LoginForm>
           ),
         ),
         onPressed: () {
-          if (_formKey.currentState != null &&
-              _formKey.currentState!.validate()) {
-            _formKey.currentState!.save();
-            _formKey.currentState!.reset();
+          var loginValidation = LoginValidation(mailBoxInput: _mailController.value.text, passwordBoxInput: _passwordController.value.text);
+          if(loginValidation.errorMsg.isNotEmpty){
+            showDialog(context: context, builder: (_) => CustomAlertDialog(alertText: loginValidation.errorMsg,));
           }
         },
         child: const Text("Giriş Yap"),
@@ -209,19 +205,16 @@ class _LogiFormState extends State<_LoginForm>
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        children: [
-          _mailBox(),
-          const SizedBox(
-            height: 12,
-          ),
-          _passwordBox(),
-          _rememberMe(),
-          _loginButton(),
-        ],
-      ),
+    return Column(
+      children: [
+        _mailBox(),
+        const SizedBox(
+          height: 12,
+        ),
+        _passwordBox(),
+        _rememberMe(),
+        _loginButton(),
+      ],
     );
   }
 }
