@@ -40,7 +40,33 @@ class HomeScreenView extends StatelessWidget {
   }
 }
 
-class _BiruniLogo extends StatelessWidget {
+class _BiruniLogo extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _BiruniLogoState();
+  }
+}
+
+class _BiruniLogoState extends State<_BiruniLogo>
+    with TickerProviderStateMixin {
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    //animation controller was declared. this provides control on animation
+    _controller = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 4000));
+    //this makes the animation repeat
+    _controller.repeat();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height -
@@ -50,9 +76,14 @@ class _BiruniLogo extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          CircleAvatar(
-              backgroundImage: const AssetImage('assets/biruni_logo.jpg'),
-              radius: radius),
+          //this makes rotation animation
+          RotationTransition(
+            //this generate turns between 0 and 1
+            turns: Tween<double>(begin: 0.0, end: 1.0).animate(_controller),
+            child: CircleAvatar(
+                backgroundImage: const AssetImage('assets/biruni_logo.jpg'),
+                radius: radius),
+          ),
           Text(
             "Oturum Açın",
             style: Theme.of(context).textTheme.headline6,
@@ -138,7 +169,7 @@ class _RememberMeState extends State {
             value: isChecked,
             onChanged: (value) {
               setState(() {
-              isChecked = !isChecked;
+                isChecked = !isChecked;
               });
             }),
         const Text("Beni Hatırla"),
