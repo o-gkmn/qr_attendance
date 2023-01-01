@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:qr_attendance/view/home/validation/validation.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -27,13 +28,7 @@ class HomeScreenView extends StatelessWidget {
         verticalDirection: VerticalDirection.down,
         children: [
           _BiruniLogo(),
-          _MailBox(),
-          const SizedBox(
-            height: 12,
-          ),
-          _PasswordBox(),
-          _RememberMe(),
-          _LoginButton(),
+          _LoginForm(),
         ],
       ),
     );
@@ -94,13 +89,24 @@ class _BiruniLogoState extends State<_BiruniLogo>
   }
 }
 
-class _MailBox extends StatelessWidget {
-  final controller = TextEditingController();
-
+class _LoginForm extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return TextField(
-      controller: controller,
+  State<StatefulWidget> createState() {
+    return _LogiFormState();
+  }
+}
+
+class _LogiFormState extends State<_LoginForm>
+    with TickerProviderStateMixin, ValidationMixin {
+  final _mailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  var isChecked = false;
+
+  Widget _mailBox() {
+    return TextFormField(
+      controller: _mailController,
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
           borderSide:
@@ -110,6 +116,11 @@ class _MailBox extends StatelessWidget {
         focusedBorder: OutlineInputBorder(
           borderSide:
               BorderSide(color: Theme.of(context).primaryColor, width: 3.0),
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderSide:
+              BorderSide(color: Theme.of(context).errorColor, width: 3.0),
           borderRadius: BorderRadius.circular(12.0),
         ),
         labelText: "Email",
@@ -118,17 +129,13 @@ class _MailBox extends StatelessWidget {
           color: Theme.of(context).iconTheme.color,
         ),
       ),
+      validator: mailBoxValidation,
     );
   }
-}
 
-class _PasswordBox extends StatelessWidget {
-  final controller = TextEditingController();
-
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      controller: controller,
+  Widget _passwordBox() {
+    return TextFormField(
+      controller: _passwordController,
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
           borderSide:
@@ -138,6 +145,11 @@ class _PasswordBox extends StatelessWidget {
         focusedBorder: OutlineInputBorder(
           borderSide:
               BorderSide(color: Theme.of(context).primaryColor, width: 3.0),
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderSide:
+              BorderSide(color: Theme.of(context).errorColor, width: 3.0),
           borderRadius: BorderRadius.circular(12.0),
         ),
         labelText: "Şifre",
@@ -147,21 +159,11 @@ class _PasswordBox extends StatelessWidget {
         ),
       ),
       obscureText: true,
+      validator: passwordBoxValidation,
     );
   }
-}
 
-class _RememberMe extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return _RememberMeState();
-  }
-}
-
-class _RememberMeState extends State {
-  var isChecked = false;
-  @override
-  Widget build(BuildContext context) {
+  Widget _rememberMe() {
     return Row(
       children: [
         Checkbox(
@@ -176,11 +178,8 @@ class _RememberMeState extends State {
       ],
     );
   }
-}
 
-class _LoginButton extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
+  Widget _loginButton() {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       child: ElevatedButton(
@@ -189,8 +188,39 @@ class _LoginButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(12.0),
           ),
         ),
-        onPressed: () {},
+        onPressed: () {
+          if (_formKey.currentState != null &&
+              _formKey.currentState!.validate()) {
+            _formKey.currentState!.save();
+            _formKey.currentState!.reset();
+          }
+        },
         child: const Text("Giriş Yap"),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _mailController.dispose();
+    _passwordController.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: _formKey,
+      child: Column(
+        children: [
+          _mailBox(),
+          const SizedBox(
+            height: 12,
+          ),
+          _passwordBox(),
+          _rememberMe(),
+          _loginButton(),
+        ],
       ),
     );
   }
