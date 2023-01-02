@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qr_attendance/route/page_router.dart';
 import 'package:qr_attendance/theme/theme.dart';
-import 'package:qr_attendance/view/home/home.dart';
+import 'package:qr_attendance/view/login/login.dart';
 
 class App extends StatelessWidget{
   const App({super.key});
@@ -13,8 +13,7 @@ class App extends StatelessWidget{
       debugShowCheckedModeBanner: false,
       theme: customTheme.themeData,
       onGenerateRoute: PageRouter.generateRoute,
-      initialRoute: "/",
-      home: const HomeScreen(),
+      initialRoute: "/attendance",
     );
   }
 

@@ -1,1 +1,2 @@
-String home = "/";
+String login = "/login";
+String attendance = "/attendance";

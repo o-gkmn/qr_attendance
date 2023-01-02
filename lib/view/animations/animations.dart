@@ -1,0 +1,1 @@
+export 'src/shake_animations.dart';

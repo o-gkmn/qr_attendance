@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qr_attendance/view/animations/shake_animations.dart';
+import 'package:qr_attendance/view/animations/src/shake_animations.dart';
 
 class CustomAlertDialog extends StatefulWidget {
   final String alertText;

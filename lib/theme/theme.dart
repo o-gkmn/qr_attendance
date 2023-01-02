@@ -6,8 +6,13 @@ class CustomThemeData {
   CustomThemeData({required this.isDark});
 
   ThemeData get themeData {
-    TextTheme txtTheme =
-        (isDark ? ThemeData.dark() : ThemeData.light()).textTheme;
+    // TextTheme txtTheme =
+    //     (isDark ? ThemeData.dark() : ThemeData.light()).textTheme;
+
+    TextTheme textTheme = const TextTheme(
+      headline6: TextStyle(color: Colors.white),
+      subtitle1: TextStyle(color: Colors.white, fontSize: 12),
+      );
 
     ColorScheme colorScheme = ColorScheme(
         brightness: isDark ? Brightness.dark : Brightness.light,
@@ -22,7 +27,7 @@ class CustomThemeData {
         surface: const Color(0xff96CDFF),
         onSurface: const Color(0xffFECFEF));
 
-    var t = ThemeData.from(colorScheme: colorScheme, textTheme: txtTheme);
+    var t = ThemeData.from(colorScheme: colorScheme, textTheme: textTheme);
     return t;
   }
 }
