@@ -1,10 +1,10 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:qr_attendance/view/home/validation/login_validation.dart';
-import 'package:qr_attendance/view/widgets/custom_alert_dialog.dart';
+import 'package:qr_attendance/view/login/validation/login_validation.dart';
+import 'package:qr_attendance/view/widgets/src/custom_alert_dialog.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,13 +13,13 @@ class HomeScreen extends StatelessWidget {
         title: const Text("Biruni Üniversitesi"),
         centerTitle: true,
       ),
-      body: const HomeScreenView(),
+      body: const LoginScreenView(),
     );
   }
 }
 
-class HomeScreenView extends StatelessWidget {
-  const HomeScreenView({super.key});
+class LoginScreenView extends StatelessWidget {
+  const LoginScreenView({super.key});
 
   @override
   Widget build(BuildContext context) {
