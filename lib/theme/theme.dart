@@ -12,6 +12,7 @@ class CustomThemeData {
     TextTheme textTheme = const TextTheme(
       headline6: TextStyle(color: Colors.white),
       subtitle1: TextStyle(color: Colors.white, fontSize: 12),
+      subtitle2: TextStyle(color: Color(0xff30638E), fontSize: 12, fontWeight: FontWeight.bold),
       );
 
     ColorScheme colorScheme = ColorScheme(
@@ -27,7 +28,7 @@ class CustomThemeData {
         surface: const Color(0xff96CDFF),
         onSurface: const Color(0xffFECFEF));
 
-    var t = ThemeData.from(colorScheme: colorScheme, textTheme: textTheme);
-    return t;
+    ThemeData theme = ThemeData.from(colorScheme: colorScheme, textTheme: textTheme);
+    return theme;
   }
 }
