@@ -19,12 +19,15 @@ class AttendanceScreenView extends StatelessWidget {
     return Column(
       children: [
         _Header(),
+        const Spacer(flex: 1),
+        _Body(),
+        const Spacer(flex: 1),
       ],
     );
   }
 }
 
-class _Header extends StatelessWidget{
+class _Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,8 +36,18 @@ class _Header extends StatelessWidget{
       width: MediaQuery.of(context).size.width,
       color: Theme.of(context).primaryColor,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.help, color: Colors.white)),
+              IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.person, color: Colors.white)),
+            ],
+          ),
           Text(
             "Özgür Gökmen",
             style: Theme.of(context).textTheme.headline6,
@@ -50,5 +63,23 @@ class _Header extends StatelessWidget{
       ),
     );
   }
+}
 
+class _Body extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+        onPressed: () {},
+        child: Column(
+          children: [
+            Icon(
+              Icons.qr_code_scanner,
+              size: MediaQuery.of(context).size.height * 0.25,
+              color: Theme.of(context).primaryColor,
+            ),
+            Text("Okutmak için tıklayın",
+                style: Theme.of(context).textTheme.subtitle2),
+          ],
+        ));
+  }
 }
