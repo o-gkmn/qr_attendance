@@ -51,7 +51,7 @@ class _Header extends StatelessWidget {
           ),
           const Spacer(flex: 1),
           Padding(
-            padding: const EdgeInsets.only(bottom: 20, left: 50),
+            padding: const EdgeInsets.only(bottom: 20, left: 70),
             child: Text("Geçmiş", style: Theme.of(context).textTheme.headline5),
           ),
         ],
