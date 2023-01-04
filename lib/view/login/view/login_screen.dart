@@ -9,6 +9,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text("Biruni Üniversitesi"),
         centerTitle: true,
@@ -82,7 +83,10 @@ class _BiruniLogoState extends State<_BiruniLogo>
           ),
           Text(
             "Oturum Açın",
-            style: Theme.of(context).textTheme.headline6,
+            style: Theme.of(context)
+                .textTheme
+                .headline6!
+                .copyWith(color: Colors.black),
           ),
         ],
       ),
@@ -128,6 +132,7 @@ class _LogiFormState extends State<_LoginForm> {
           color: Theme.of(context).iconTheme.color,
         ),
       ),
+      style: const TextStyle(color: Colors.black),
     );
   }
 
@@ -157,6 +162,7 @@ class _LogiFormState extends State<_LoginForm> {
         ),
       ),
       obscureText: true,
+      style: const TextStyle(color: Colors.black),
     );
   }
 
@@ -186,9 +192,15 @@ class _LogiFormState extends State<_LoginForm> {
           ),
         ),
         onPressed: () {
-          var loginValidation = LoginValidation(mailBoxInput: _mailController.value.text, passwordBoxInput: _passwordController.value.text);
-          if(loginValidation.errorMsg.isNotEmpty){
-            showDialog(context: context, builder: (_) => CustomAlertDialog(alertText: loginValidation.errorMsg,));
+          var loginValidation = LoginValidation(
+              mailBoxInput: _mailController.value.text,
+              passwordBoxInput: _passwordController.value.text);
+          if (loginValidation.errorMsg.isNotEmpty) {
+            showDialog(
+                context: context,
+                builder: (_) => CustomAlertDialog(
+                      alertText: loginValidation.errorMsg,
+                    ));
           }
         },
         child: const Text("Giriş Yap"),
@@ -205,16 +217,18 @@ class _LogiFormState extends State<_LoginForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        _mailBox(),
-        const SizedBox(
-          height: 12,
-        ),
-        _passwordBox(),
-        _rememberMe(),
-        _loginButton(),
-      ],
+    return Flexible(
+      child: Column(
+        children: [
+          _mailBox(),
+          const SizedBox(
+            height: 12,
+          ),
+          _passwordBox(),
+          _rememberMe(),
+          _loginButton(),
+        ],
+      ),
     );
   }
 }

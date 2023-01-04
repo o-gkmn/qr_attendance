@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qr_attendance/view/attendance/view/attendance_screen.dart';
+import 'package:qr_attendance/view/attendance/view/tab_selection.dart';
 import 'package:qr_attendance/view/login/login.dart';
 
 class PageRouter {
@@ -8,7 +8,7 @@ class PageRouter {
       case "/login":
         return MaterialPageRoute(builder: (_) => const LoginScreen());
       case "/attendance":
-        return MaterialPageRoute(builder: (_) => const AttendanceScreen());
+        return MaterialPageRoute(builder: (_) => const TabSelection());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

@@ -11,14 +11,16 @@ class CustomThemeData {
 
     TextTheme textTheme = const TextTheme(
       headline6: TextStyle(color: Colors.white),
+      headline5: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
       subtitle1: TextStyle(color: Colors.white, fontSize: 12),
       subtitle2: TextStyle(color: Color(0xff30638E), fontSize: 12, fontWeight: FontWeight.bold),
       );
 
     ColorScheme colorScheme = ColorScheme(
         brightness: isDark ? Brightness.dark : Brightness.light,
-        primary: const Color(0xff30638E),
-        onPrimary: const Color(0xffFFFFEF),
+        //primary: const Color(0xff30638E),
+        primary: Colors.blue.shade900,
+        onPrimary: const Color(0xffFFFFEf),
         secondary: const Color(0xffE84855),
         onSecondary: const Color(0xffEFBCD5),
         error: const Color(0xffFF1B1C),

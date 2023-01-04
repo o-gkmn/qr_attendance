@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qr_attendance/route/page_router.dart';
 import 'package:qr_attendance/theme/theme.dart';
-import 'package:qr_attendance/view/login/login.dart';
 
 class App extends StatelessWidget{
   const App({super.key});
