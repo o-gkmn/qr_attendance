@@ -17,9 +17,12 @@ class _TabSelectionState extends State<TabSelection> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        bottomNavigationBar: TabBar(tabs: [
-          Tab(child: Icon(Icons.qr_code_scanner, color: Theme.of(context).primaryColor,)),
-          Tab(child: Icon(Icons.person, color: Theme.of(context).primaryColor))
+        bottomNavigationBar: TabBar(
+          labelColor: Theme.of(context).primaryColor,
+          unselectedLabelColor: Colors.grey,
+          tabs: const [
+          Tab(icon: Icon(Icons.qr_code_scanner)),
+          Tab(icon: Icon(Icons.person))
         ]),
         body: const TabBarView(children: [
           AttendanceScreenView(),
