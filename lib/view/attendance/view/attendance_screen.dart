@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:qr_attendance/view/attendance/view/draggble_screen.dart';
 
 class AttendanceScreen extends StatelessWidget {
   const AttendanceScreen({super.key});
@@ -74,62 +75,7 @@ class _Body extends StatelessWidget {
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(15), topRight: Radius.circular(15))),
       builder: (context) {
-        return DraggableScrollableSheet(
-          expand: false,
-          initialChildSize: 0.7,
-          builder: (context, controller) {
-            return Column(
-              children: [
-                //Divider
-                Container(
-                  margin: const EdgeInsets.only(top: 5),
-                  height: 5,
-                  width: 50,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      color: Colors.grey),
-                ),
-                //QR textlerinin olduğu kısım
-                Container(
-                    height: MediaQuery.of(context).size.height * 0.17,
-                    margin: const EdgeInsets.only(top: 20),
-                    decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(50.0),
-                          topRight: Radius.circular(50.0),
-                        ),
-                        color: Theme.of(context).scaffoldBackgroundColor),
-                    child: Expanded(
-                      child: Column(
-                        children: [
-                          Text(
-                            "QR Kodu Okutun",
-                            style: Theme.of(context)
-                                .textTheme
-                                .headline6!
-                                .copyWith(color: Colors.black, fontSize: 16),
-                          ),
-                          const Spacer(flex: 1),
-                          Text(
-                            "Qr kodunu belirlenen alana ortalayacak şekilde hizalayın",
-                            style: Theme.of(context).textTheme.caption,
-                            textAlign: TextAlign.center,
-                          ),
-                          const Spacer(
-                            flex: 1,
-                          ),
-                        ],
-                      ),
-                    )),
-                Container(
-                  height: 227,
-                  width: MediaQuery.of(context).size.width,
-                  color: Colors.black,
-                ),
-              ],
-            );
-          },
-        );
+        return const DraggableScreen();
       },
     );
   }
@@ -154,3 +100,4 @@ class _Body extends StatelessWidget {
     );
   }
 }
+
