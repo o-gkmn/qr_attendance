@@ -28,7 +28,7 @@ class _Header extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(top: MediaQuery.of(context).viewPadding.top),
-      height: MediaQuery.of(context).size.height * 0.25,
+      height: MediaQuery.of(context).size.height * 0.22,
       width: MediaQuery.of(context).size.width,
       color: Theme.of(context).primaryColor,
       child: Column(
@@ -51,8 +51,8 @@ class _Header extends StatelessWidget {
           ),
           const Spacer(flex: 1),
           Padding(
-            padding: const EdgeInsets.only(bottom: 20, left: 50),
-            child: Text("Geçmiş", style: Theme.of(context).textTheme.headline5),
+            padding: const EdgeInsets.only(bottom: 17, left: 70),
+            child: Text("Geçmiş", style: Theme.of(context).textTheme.headline6!.copyWith(fontSize: 28)),
           ),
         ],
       ),

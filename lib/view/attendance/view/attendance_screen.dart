@@ -32,10 +32,11 @@ class _Header extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(top: MediaQuery.of(context).viewPadding.top),
-      height: MediaQuery.of(context).size.height * 0.25,
+      height: MediaQuery.of(context).size.height * 0.22,
       width: MediaQuery.of(context).size.width,
       color: Theme.of(context).primaryColor,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -48,12 +49,10 @@ class _Header extends StatelessWidget {
                   icon: const Icon(Icons.person, color: Colors.white)),
             ],
           ),
+          const SizedBox(height: 10),
           Text(
-            "Özgür Gökmen",
+            "ÖZGÜR GÖKMEN",
             style: Theme.of(context).textTheme.headline6,
-          ),
-          const SizedBox(
-            height: 5,
           ),
           Text(
             "Bilgisayar Mühendisliği",
@@ -74,7 +73,7 @@ class _Body extends StatelessWidget {
           children: [
             Icon(
               Icons.qr_code_scanner,
-              size: MediaQuery.of(context).size.height * 0.25,
+              size: MediaQuery.of(context).size.height * 0.20,
               color: Theme.of(context).primaryColor,
             ),
             Text("Okutmak için tıklayın",

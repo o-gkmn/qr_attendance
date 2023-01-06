@@ -12,8 +12,8 @@ class CustomThemeData {
     TextTheme textTheme = const TextTheme(
       headline6: TextStyle(color: Colors.white),
       headline5: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-      subtitle1: TextStyle(color: Colors.white, fontSize: 12),
-      subtitle2: TextStyle(color: Color(0xff30638E), fontSize: 12, fontWeight: FontWeight.bold),
+      subtitle1: TextStyle(color: Colors.white, fontSize: 14),
+      subtitle2: TextStyle(color: Color(0xff30638E), fontSize: 14, fontWeight: FontWeight.bold),
       );
 
     ColorScheme colorScheme = ColorScheme(
