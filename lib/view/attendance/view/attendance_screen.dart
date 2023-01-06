@@ -89,7 +89,7 @@ class _Body extends StatelessWidget {
         children: [
           Icon(
             Icons.qr_code_scanner,
-            size: MediaQuery.of(context).size.height * 0.25,
+            size: MediaQuery.of(context).size.height * 0.20,
             color: Theme.of(context).primaryColor,
           ),
           Text("Okutmak için tıklayın",

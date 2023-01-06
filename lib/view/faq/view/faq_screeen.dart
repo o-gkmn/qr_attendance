@@ -28,15 +28,18 @@ class FAQScreen extends StatelessWidget {
 class _FAQScreenView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: 3,
-      itemBuilder: ((context, index) {
-        return ListTile(
-          leading: const Icon(Icons.info),
-          title: Text(title[index], style: Theme.of(context).textTheme.bodyMedium,),
-          subtitle: Text(subtitle[index]),
-        );
-      }),
+    return Padding(
+      padding: const EdgeInsets.only(top: 5),
+      child: ListView.builder(
+        itemCount: 3,
+        itemBuilder: ((context, index) {
+          return ListTile(
+            leading: const Icon(Icons.info),
+            title: Text(title[index], style: Theme.of(context).textTheme.bodyMedium,),
+            subtitle: Text(subtitle[index]),
+          );
+        }),
+      ),
     );
   }
 }
