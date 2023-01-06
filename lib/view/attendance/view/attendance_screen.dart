@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:qr_attendance/view/attendance/view/draggble_screen.dart';
 
 class AttendanceScreen extends StatelessWidget {
   const AttendanceScreen({super.key});
@@ -42,10 +43,10 @@ class _Header extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               IconButton(
-                  onPressed: () {},
+                  onPressed: () => Navigator.pushNamed(context, "/faq"),
                   icon: const Icon(Icons.help, color: Colors.white)),
               IconButton(
-                  onPressed: () {},
+                  onPressed: () => Navigator.pushNamed(context, "/account"),
                   icon: const Icon(Icons.person, color: Colors.white)),
             ],
           ),
@@ -65,20 +66,37 @@ class _Header extends StatelessWidget {
 }
 
 class _Body extends StatelessWidget {
+  void _showSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(15), topRight: Radius.circular(15))),
+      builder: (context) {
+        return const DraggableScreen();
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return TextButton(
-        onPressed: () {},
-        child: Column(
-          children: [
-            Icon(
-              Icons.qr_code_scanner,
-              size: MediaQuery.of(context).size.height * 0.20,
-              color: Theme.of(context).primaryColor,
-            ),
-            Text("Okutmak için tıklayın",
-                style: Theme.of(context).textTheme.subtitle2),
-          ],
-        ));
+      onPressed: () {
+        _showSheet(context);
+      },
+      child: Column(
+        children: [
+          Icon(
+            Icons.qr_code_scanner,
+            size: MediaQuery.of(context).size.height * 0.25,
+            color: Theme.of(context).primaryColor,
+          ),
+          Text("Okutmak için tıklayın",
+              style: Theme.of(context).textTheme.subtitle2),
+        ],
+      ),
+    );
   }
 }
+
