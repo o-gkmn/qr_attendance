@@ -202,6 +202,7 @@ class _LogiFormState extends State<_LoginForm> {
                       alertText: loginValidation.errorMsg,
                     ));
           }
+          Navigator.pushReplacementNamed(context, "/attendance");
         },
         child: const Text("Giriş Yap"),
       ),

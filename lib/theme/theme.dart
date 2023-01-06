@@ -14,6 +14,7 @@ class CustomThemeData {
       headline5: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
       subtitle1: TextStyle(color: Colors.white, fontSize: 14),
       subtitle2: TextStyle(color: Color(0xff30638E), fontSize: 14, fontWeight: FontWeight.bold),
+      bodyText2: TextStyle(color: Color(0xff000000), fontSize: 14)
       );
 
     ColorScheme colorScheme = ColorScheme(
@@ -21,11 +22,13 @@ class CustomThemeData {
         //primary: const Color(0xff30638E),
         primary: Colors.blue.shade900,
         onPrimary: const Color(0xffFFFFEf),
-        secondary: const Color(0xffE84855),
+        //secondary: const Color(0xffE84855),
+        secondary: Colors.grey.shade400,
         onSecondary: const Color(0xffEFBCD5),
         error: const Color(0xffFF1B1C),
         onError: const Color(0xffFF1B1C),
-        background: const Color(0xffD8E1FF),
+        //background: const Color(0xffD8E1FF),
+        background: const Color(0xffffffff),
         onBackground: const Color(0xffDBBADD),
         surface: const Color(0xff96CDFF),
         onSurface: const Color(0xffFECFEF));

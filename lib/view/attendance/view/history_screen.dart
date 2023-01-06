@@ -1,5 +1,32 @@
 import 'package:flutter/material.dart';
 
+List<String> lessonsCode = [
+  "BLG 308",
+  "BLG 308",
+  "BLG 308",
+  "BLG 308",
+  "BLG 308",
+  "BLG 308",
+  "BLG 308",
+  "BLG 308",
+  "BLG 308",
+  "BLG 308",
+  "BLG 308",
+];
+List<String> date = [
+  "25.10.2022 10.27",
+  "25.10.2022 10.27",
+  "25.10.2022 10.27",
+  "25.10.2022 10.27",
+  "25.10.2022 10.27",
+  "25.10.2022 10.27",
+  "25.10.2022 10.27",
+  "25.10.2022 10.27",
+  "25.10.2022 10.27",
+  "25.10.2022 10.27",
+  "25.10.2022 10.27"
+];
+
 class HistoryScreen extends StatelessWidget {
   const HistoryScreen({super.key});
 
@@ -15,10 +42,7 @@ class _HistoryScreenView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
-        _Header(),
-        Container(),
-      ],
+      children: [_Header(), _Body()],
     );
   }
 }
@@ -50,11 +74,34 @@ class _Header extends StatelessWidget {
             ],
           ),
           const Spacer(flex: 1),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 15, left: 70),
-            child: Text("Geçmiş", style: Theme.of(context).textTheme.headline6!.copyWith(fontSize: 28)),
+          Center(
+            child: Text("Geçmiş",
+                style: Theme.of(context)
+                    .textTheme
+                    .headline6),
           ),
+          const Spacer(flex: 3)
         ],
+      ),
+    );
+  }
+}
+
+class _Body extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: ListView.builder(
+        padding: const EdgeInsets.all(0),
+        itemCount: 11,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(lessonsCode[index],
+                style: Theme.of(context).textTheme.bodyText2),
+            subtitle:
+                Text(date[index], style: Theme.of(context).textTheme.caption),
+          );
+        },
       ),
     );
   }
