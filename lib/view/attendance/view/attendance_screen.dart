@@ -42,10 +42,10 @@ class _Header extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               IconButton(
-                  onPressed: () {},
+                  onPressed: () => Navigator.pushNamed(context, "/faq"),
                   icon: const Icon(Icons.help, color: Colors.white)),
               IconButton(
-                  onPressed: () {},
+                  onPressed: () => Navigator.pushNamed(context, "/account"),
                   icon: const Icon(Icons.person, color: Colors.white)),
             ],
           ),
