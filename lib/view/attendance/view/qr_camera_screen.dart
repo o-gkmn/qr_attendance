@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
-class DraggableScreen extends StatelessWidget {
-  const DraggableScreen({super.key});
+class QRCameraScreen extends StatelessWidget {
+  const QRCameraScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,19 +37,19 @@ class _QRCameraState extends State<_QRCamera> {
     super.reassemble();
     if (Platform.isAndroid) {
       qrController!.pauseCamera();
-    } else if (Platform.isIOS) {
-      qrController!.resumeCamera();
     }
+    qrController!.resumeCamera();
   }
 
   @override
   void dispose() {
-    super.dispose();
     qrController?.dispose();
+    super.dispose();
   }
 
   void _onQRViewCreated(QRViewController controller) {
     qrController = controller;
+    qrController!.resumeCamera();
     qrController!.scannedDataStream.listen((event) {
       setState(() {
         result = event;

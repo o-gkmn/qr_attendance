@@ -60,8 +60,8 @@ class _BiruniLogoState extends State<_BiruniLogo>
 
   @override
   void dispose() {
-    super.dispose();
     _controller.dispose();
+    super.dispose();
   }
 
   @override

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qr_attendance/view/attendance/view/draggble_screen.dart';
+import 'package:qr_attendance/view/attendance/view/qr_camera_screen.dart';
 
 class AttendanceScreen extends StatelessWidget {
   const AttendanceScreen({super.key});
@@ -74,7 +74,7 @@ class _Body extends StatelessWidget {
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(15), topRight: Radius.circular(15))),
       builder: (context) {
-        return const DraggableScreen();
+        return const QRCameraScreen();
       },
     );
   }
