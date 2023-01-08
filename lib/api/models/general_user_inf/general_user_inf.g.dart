@@ -1,0 +1,27 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'general_user_inf.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+GeneralUserInf _$GeneralUserInfFromJson(Map<String, dynamic> json) =>
+    GeneralUserInf(
+      name: json['name'] as String,
+      surname: json['surname'] as String,
+      stdNo: json['stdNo'] as String,
+      faculty: json['faculty'] as String,
+      depertmant: json['depertmant'] as String,
+      stdClass: json['stdClass'] as String,
+    );
+
+Map<String, dynamic> _$GeneralUserInfToJson(GeneralUserInf instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'surname': instance.surname,
+      'stdNo': instance.stdNo,
+      'faculty': instance.faculty,
+      'depertmant': instance.depertmant,
+      'stdClass': instance.stdClass,
+    };
