@@ -5,7 +5,7 @@ class HabitRepository {
 
   final StudentApi _studentApi;
 
-  Stream<List<UserLoginInf>> controlUserLoginInf() => _studentApi.controlUserLoginInf();
+  Future<UserLoginInf> controlUserLoginInf(String email, String password) => _studentApi.controlUserLoginInf(email, password);
 
   Future<GeneralUserInf> getUserInf(String stdNo) => _studentApi.getUserInf(stdNo);
 

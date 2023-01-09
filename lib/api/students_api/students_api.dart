@@ -2,7 +2,7 @@ import 'package:qr_attendance/api/api.dart';
 
 abstract class StudentApi{
 
-  Stream<List<UserLoginInf>> controlUserLoginInf();
+  Future<UserLoginInf> controlUserLoginInf(String mail, String password);
 
   Future<GeneralUserInf> getUserInf(String stdNo);
 

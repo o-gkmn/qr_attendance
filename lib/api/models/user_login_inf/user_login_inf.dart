@@ -11,6 +11,8 @@ class UserLoginInf extends Equatable{
 
   const UserLoginInf({required this.stdNo, required this.stdMail, required this.stdPass});
 
+  const UserLoginInf.empty() : stdNo = "", stdMail = "", stdPass = "";
+
   factory UserLoginInf.fromJson(Map<String, dynamic> json) => _$UserLoginInfFromJson(json);
 
   Map<String, dynamic> toJson() => _$UserLoginInfToJson(this);

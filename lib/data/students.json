@@ -1,14 +1,14 @@
 {
     "user_login_inf": [
         {
-            "stdNo": 1,
+            "stdNo": "200404006",
             "stdMail": "200404006@st.biruni.edu.tr",
             "stdPass": "gpyQ3C3K"
         },
         {
-            "stdNo": "200404005",
-            "stdMail": "200404006@st.biruni.edu.tr",
-            "stdPass": "gpyQ3C3K"
+            "stdNo": "200404035",
+            "stdMail": "200404035@st.biruni.edu.tr",
+            "stdPass": "sans"
         }
     ],
     "students_lessons_inf": [
