@@ -12,7 +12,7 @@ GeneralUserInf _$GeneralUserInfFromJson(Map<String, dynamic> json) =>
       surname: json['surname'] as String,
       stdNo: json['stdNo'] as String,
       faculty: json['faculty'] as String,
-      depertmant: json['depertmant'] as String,
+      department: json['department'] as String,
       stdClass: json['stdClass'] as String,
     );
 
@@ -22,6 +22,6 @@ Map<String, dynamic> _$GeneralUserInfToJson(GeneralUserInf instance) =>
       'surname': instance.surname,
       'stdNo': instance.stdNo,
       'faculty': instance.faculty,
-      'depertmant': instance.depertmant,
+      'department': instance.department,
       'stdClass': instance.stdClass,
     };

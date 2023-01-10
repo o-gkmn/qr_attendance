@@ -44,6 +44,14 @@
             "faculty": "Mühendislik ve Doğa Bilimleri Fakültesi",
             "department": "Bilgisayar Mühendisliği",
             "stdClass": "3"
+        },
+        {
+            "name": "ezgi",
+            "surname": "yıldız",
+            "stdNo": "200404035",
+            "faculty": "Mühendislik ve Doğa Bilimleri Fakültesi",
+            "department": "Bilgisayar Mühendisliği",
+            "stdClass": "3"
         }
     ]
 }

@@ -9,7 +9,7 @@ class GeneralUserInf extends Equatable {
   final String surname;
   final String stdNo;
   final String faculty;
-  final String depertmant;
+  final String department;
   final String stdClass;
 
   const GeneralUserInf(
@@ -17,14 +17,23 @@ class GeneralUserInf extends Equatable {
       required this.surname,
       required this.stdNo,
       required this.faculty,
-      required this.depertmant,
+      required this.department,
       required this.stdClass});
 
-    factory GeneralUserInf.fromJson(Map<String, dynamic> json) => _$GeneralUserInfFromJson(json);
+  const GeneralUserInf.empty()
+      : name = "",
+        surname = "",
+        stdNo = "",
+        faculty = "",
+        department = "",
+        stdClass = "";
 
-    Map<String, dynamic> toJson() => _$GeneralUserInfToJson(this);
+  factory GeneralUserInf.fromJson(Map<String, dynamic> json) =>
+      _$GeneralUserInfFromJson(json);
 
+  Map<String, dynamic> toJson() => _$GeneralUserInfToJson(this);
 
   @override
-  List<Object?> get props => [name, surname, stdNo, faculty, depertmant, stdClass];
+  List<Object?> get props =>
+      [name, surname, stdNo, faculty, department, stdClass];
 }
