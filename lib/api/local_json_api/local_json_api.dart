@@ -43,8 +43,32 @@ class LocalJsonApi extends StudentApi {
   }
 
   @override
-  Future<StudentsLessonsInf> getPastLessons(String stdNo) {
-    throw UnimplementedError();
+  Future<StudentsLessonsInf> getPastLessons(String stdNo) async {
+    /**
+     * This function get past lesson with date
+     * StudentsLessonsInf has 3 list and 1 String data type
+     * first of all we create a url and we get data
+     * response.body decodes by jsonDecode and this function returns a list
+     * then we convert to StudentsLessonInf object using .fromJson constructor
+     */
+    try {
+      var url = Uri.parse("$baseURL$studentsLessonsInfEndpoint?stdNo=$stdNo");
+      var response = await http.get(url);
+
+      if (response.statusCode == 200) {
+        List pastLessonsList = jsonDecode(response.body);
+        if (pastLessonsList.isEmpty) {
+          return StudentsLessonsInf.empty();
+        }
+        StudentsLessonsInf studentsLessonsInf =
+            StudentsLessonsInf.fromJson(pastLessonsList.first);
+        return studentsLessonsInf;
+      }else{
+        throw NotFoundException();
+      }
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override

@@ -16,6 +16,8 @@ class StudentsLessonsInf extends Equatable {
       required this.pastLessons,
       required this.date});
 
+  StudentsLessonsInf.empty() : stdNo = "", lessonsLearned = <String>[], pastLessons = <String>[], date = <String>[];
+
   factory StudentsLessonsInf.fromJson(Map<String, dynamic> json) => _$StudentsLessonsInfFromJson(json);
 
   Map<String, dynamic> toJson() => _$StudentsLessonsInfToJson(this);

@@ -80,4 +80,44 @@ void main() {
           throwsA(isA<NotFoundException>()));
     });
   });
+
+  group("getPastLessons", () {
+    test("Student lessons info should be get", () async {
+      LocalJsonApi testApi = LocalJsonApi();
+
+      StudentsLessonsInf testModel = await testApi.getPastLessons("200404006");
+
+      expect(testModel.stdNo, "200404006");
+      expect(testModel.date, [
+        "14.10.2022",
+        "15.10.2022",
+        "21.10.2002",
+        "28.10.2022",
+        "29.10.2022"
+      ]);
+      expect(
+          testModel.lessonsLearned, ["BLG3O7", "BLG308", "BLG309", "BLG310"]);
+      expect(
+        testModel.pastLessons,
+        ["BLG307", "BLG308", "BLG308", "BLG308", "BLG309"],
+      );
+    });
+
+    test("Student lessons info shouldnt be get", () async{
+      LocalJsonApi testApi = LocalJsonApi();
+
+      StudentsLessonsInf testModel = await testApi.getPastLessons("200404005");
+
+      expect(testModel.stdNo, "");
+      expect(testModel.date, []);
+      expect(testModel.lessonsLearned, []);
+      expect(testModel.pastLessons, []);
+    });
+
+    test("Throw an exception when tried to get data", (){
+      LocalJsonApi testApi = LocalJsonApi();
+
+      expect(() async => testApi.getPastLessons("200404006"), throwsA(isA<NotFoundException>()));
+    });
+  });
 }
