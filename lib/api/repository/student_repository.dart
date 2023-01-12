@@ -1,7 +1,7 @@
 import 'package:qr_attendance/api/api.dart';
 
-class HabitRepository {
-  const HabitRepository({required StudentApi studentApi}) : _studentApi = studentApi;
+class StudentRepository {
+  const StudentRepository({required StudentApi studentApi}) : _studentApi = studentApi;
 
   final StudentApi _studentApi;
 
