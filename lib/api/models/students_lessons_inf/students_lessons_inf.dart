@@ -16,9 +16,26 @@ class StudentsLessonsInf extends Equatable {
       required this.pastLessons,
       required this.date});
 
-  StudentsLessonsInf.empty() : stdNo = "", lessonsLearned = <String>[], pastLessons = <String>[], date = <String>[];
+  StudentsLessonsInf.empty()
+      : stdNo = "",
+        lessonsLearned = <String>[],
+        pastLessons = <String>[],
+        date = <String>[];
 
-  factory StudentsLessonsInf.fromJson(Map<String, dynamic> json) => _$StudentsLessonsInfFromJson(json);
+  StudentsLessonsInf copyWith(
+      {String? stdNo,
+      List<String>? lessonsLearned,
+      List<String>? pastLessons,
+      List<String>? date}) {
+    return StudentsLessonsInf(
+        stdNo: stdNo ?? this.stdNo,
+        lessonsLearned: lessonsLearned ?? this.lessonsLearned,
+        pastLessons: pastLessons ?? this.pastLessons,
+        date: date ?? this.date);
+  }
+
+  factory StudentsLessonsInf.fromJson(Map<String, dynamic> json) =>
+      _$StudentsLessonsInfFromJson(json);
 
   Map<String, dynamic> toJson() => _$StudentsLessonsInfToJson(this);
 

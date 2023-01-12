@@ -103,7 +103,7 @@ void main() {
       );
     });
 
-    test("Student lessons info shouldnt be get", () async{
+    test("Student lessons info shouldnt be get", () async {
       LocalJsonApi testApi = LocalJsonApi();
 
       StudentsLessonsInf testModel = await testApi.getPastLessons("200404005");
@@ -114,10 +114,29 @@ void main() {
       expect(testModel.pastLessons, []);
     });
 
-    test("Throw an exception when tried to get data", (){
+    test("Throw an exception when tried to get data", () {
       LocalJsonApi testApi = LocalJsonApi();
 
-      expect(() async => testApi.getPastLessons("200404006"), throwsA(isA<NotFoundException>()));
+      expect(() async => testApi.getPastLessons("200404006"),
+          throwsA(isA<NotFoundException>()));
+    });
+  });
+
+  group("deleteAllPastLessons", () {
+    test("Past lessons and dates should be delete", () async {
+      LocalJsonApi testApi = LocalJsonApi();
+
+      await testApi.deleteAllPastLessons("200404006");
+
+      StudentsLessonsInf testModel = await testApi.getPastLessons("200404006");
+
+      expect(testModel.stdNo, "200404006");
+      expect(
+        testModel.lessonsLearned,
+        ["BLG3O7", "BLG308", "BLG309", "BLG310"],
+      );
+      expect(testModel.pastLessons, []);
+      expect(testModel.date, []);
     });
   });
 }

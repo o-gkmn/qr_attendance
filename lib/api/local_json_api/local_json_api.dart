@@ -38,8 +38,26 @@ class LocalJsonApi extends StudentApi {
   }
 
   @override
-  Future<void> deleteAllPastLessons(String stdNo) {
-    throw UnimplementedError();
+  Future<void> deleteAllPastLessons(String stdNo) async {
+    /**
+     * Delete all past lessons and dates
+     * First of all getPastLessons and copy with empty lists
+     * Rather then we update this models
+     * Url is routed by id
+     * model class is gave to jsonEncode and is returned string
+     */
+    try {
+      StudentsLessonsInf studentLessons = await getPastLessons(stdNo)..copyWith(pastLessons: <String>[], date: <String>[]);
+      http.put(Uri.parse("$baseURL$studentsLessonsInfEndpoint/1"),
+          headers: { "Content-Type" : "application/json"},
+          body: jsonEncode(studentLessons)).then((value) {
+            if(value.statusCode == 404){
+              throw NotFoundException();
+            }
+          });
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override
@@ -63,7 +81,7 @@ class LocalJsonApi extends StudentApi {
         StudentsLessonsInf studentsLessonsInf =
             StudentsLessonsInf.fromJson(pastLessonsList.first);
         return studentsLessonsInf;
-      }else{
+      } else {
         throw NotFoundException();
       }
     } catch (e) {

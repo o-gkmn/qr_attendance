@@ -1,58 +1,50 @@
 {
-    "user_login_inf": [
-        {
-            "stdNo": "200404006",
-            "stdMail": "200404006@st.biruni.edu.tr",
-            "stdPass": "gpyQ3C3K"
-        },
-        {
-            "stdNo": "200404035",
-            "stdMail": "200404035@st.biruni.edu.tr",
-            "stdPass": "sans"
-        }
-    ],
-    "students_lessons_inf": [
-        {
-            "id" : 1,
-            "stdNo": "200404006",
-            "lessonsLearned": [
-                "BLG3O7",
-                "BLG308",
-                "BLG309",
-                "BLG310"
-            ],
-            "pastLessons": [
-                "BLG307",
-                "BLG308",
-                "BLG308",
-                "BLG308",
-                "BLG309"
-            ],
-            "date": [
-                "14.10.2022",
-                "15.10.2022",
-                "21.10.2002",
-                "28.10.2022",
-                "29.10.2022"
-            ]
-        }
-    ],
-    "general_user_inf": [
-        {
-            "name": "özgür",
-            "surname": "gökmen",
-            "stdNo": "200404006",
-            "faculty": "Mühendislik ve Doğa Bilimleri Fakültesi",
-            "department": "Bilgisayar Mühendisliği",
-            "stdClass": "3"
-        },
-        {
-            "name": "ezgi",
-            "surname": "yıldız",
-            "stdNo": "200404035",
-            "faculty": "Mühendislik ve Doğa Bilimleri Fakültesi",
-            "department": "Bilgisayar Mühendisliği",
-            "stdClass": "3"
-        }
-    ]
+  "user_login_inf": [
+    {
+      "id" : 1,
+      "stdNo": "200404006",
+      "stdMail": "200404006@st.biruni.edu.tr",
+      "stdPass": "gpyQ3C3K"
+    },
+    {
+      "id" : 1,
+      "stdNo": "200404035",
+      "stdMail": "200404035@st.biruni.edu.tr",
+      "stdPass": "sans"
+    }
+  ],
+  "students_lessons_inf": [
+    {
+      "stdNo": "200404006",
+      "lessonsLearned": [
+        "BLG3O7",
+        "BLG308",
+        "BLG309",
+        "BLG310"
+      ],
+      "pastLessons": [],
+      "date": [],
+      "id": 1
+    }
+  ],
+  "general_user_inf": [
+    {
+      "id" : 1,
+      "name": "özgür",
+      "surname": "gökmen",
+      "stdNo": "200404006",
+      "faculty": "Mühendislik ve Doğa Bilimleri Fakültesi",
+      "department": "Bilgisayar Mühendisliği",
+      "stdClass": "3"
+    },
+    {
+      "id" : 2,
+      "name": "ezgi",
+      "surname": "yıldız",
+      "stdNo": "200404035",
+      "faculty": "Mühendislik ve Doğa Bilimleri Fakültesi",
+      "department": "Bilgisayar Mühendisliği",
+      "stdClass": "3"
+    }
+  ]
 }
