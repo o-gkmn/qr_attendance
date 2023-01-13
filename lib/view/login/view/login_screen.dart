@@ -1,5 +1,8 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:qr_attendance/api/repository/student_repository.dart';
+import 'package:qr_attendance/view/login/cubit/login_cubit.dart';
 import 'package:qr_attendance/view/login/validation/login_validation.dart';
 import 'package:qr_attendance/view/widgets/src/custom_alert_dialog.dart';
 
@@ -8,13 +11,32 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        title: const Text("Biruni Üniversitesi"),
-        centerTitle: true,
+    return BlocProvider(
+      create: (context) => LoginCubit(
+          studentRepository: RepositoryProvider.of<StudentRepository>(context)),
+      child: BlocListener<LoginCubit, LoginState>(
+        listener: (context, state) {
+          if (state is LoginAuthenticationSucced) {
+              Navigator.popAndPushNamed(context, "/attendance");
+          }
+          if(state is LoginAuthenticationFailed){
+              showDialog(
+                context: context,
+                builder: (context) => const CustomAlertDialog(
+                    alertText: "Hatalı posta veya şifre girdiniz"),
+              );
+              context.read<LoginCubit>().setStatusWaited();
+          }
+        },
+        child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          appBar: AppBar(
+            title: const Text("Biruni Üniversitesi"),
+            centerTitle: true,
+          ),
+          body: const LoginScreenView(),
+        ),
       ),
-      body: const LoginScreenView(),
     );
   }
 }
@@ -202,7 +224,7 @@ class _LogiFormState extends State<_LoginForm> {
                       alertText: loginValidation.errorMsg,
                     ));
           }
-          Navigator.pushReplacementNamed(context, "/attendance");
+          context.read<LoginCubit>().authentication(_mailController.value.text, _passwordController.value.text);
         },
         child: const Text("Giriş Yap"),
       ),

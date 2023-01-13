@@ -37,7 +37,7 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
               color: Theme.of(context).errorColor,
             ),
             const Spacer(flex: 1),
-            Text(widget.alertText),
+            Text(widget.alertText, style: Theme.of(context).textTheme.subtitle2,),
             const Spacer(flex: 1),
             ElevatedButton(
                 onPressed: () => Navigator.pop(context),

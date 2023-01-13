@@ -32,7 +32,7 @@ dependencies:
   flutter:
     sdk: flutter
   qr_code_scanner:
-  bloc:
+  flutter_bloc:
   equatable:
   json_annotation: ^4.7.0
   json_serializable: ^6.5.4
