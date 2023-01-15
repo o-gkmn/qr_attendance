@@ -10,7 +10,7 @@ class PageRouter {
       case "/login":
         return MaterialPageRoute(builder: (_) => const LoginScreen());
       case "/attendance":
-        return MaterialPageRoute(builder: (_) => const TabSelection());
+        return MaterialPageRoute(builder: (_) => TabSelection(studentNo: settings.arguments as String));
       case "/faq":
         return MaterialPageRoute(builder: (_) => const FAQScreen());
       case "/account":

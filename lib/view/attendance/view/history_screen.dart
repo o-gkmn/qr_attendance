@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:qr_attendance/api/models/students_lessons_inf/students_lessons_inf.dart';
+
+import '../cubit/attendance_cubit.dart';
 
 List<String> lessonsCode = [
   "BLG 308",
@@ -75,10 +79,7 @@ class _Header extends StatelessWidget {
           ),
           const Spacer(flex: 1),
           Center(
-            child: Text("Geçmiş",
-                style: Theme.of(context)
-                    .textTheme
-                    .headline6),
+            child: Text("Geçmiş", style: Theme.of(context).textTheme.headline6),
           ),
           const Spacer(flex: 3)
         ],
@@ -90,19 +91,27 @@ class _Header extends StatelessWidget {
 class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-        padding: const EdgeInsets.all(0),
-        itemCount: 11,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(lessonsCode[index],
-                style: Theme.of(context).textTheme.bodyText2),
-            subtitle:
-                Text(date[index], style: Theme.of(context).textTheme.caption),
-          );
-        },
-      ),
+    return BlocBuilder<AttendanceCubit, AttendanceState>(
+      builder: (context, state) {
+        StudentsLessonsInf studentsLessonsInf = StudentsLessonsInf.empty();
+        if (state is AttendanceLoaded) {
+          studentsLessonsInf = state.studentsLessonsInf;
+        }
+        return Expanded(
+          child: ListView.builder(
+            padding: const EdgeInsets.all(0),
+            itemCount: studentsLessonsInf.pastLessons.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text(studentsLessonsInf.pastLessons[index],
+                    style: Theme.of(context).textTheme.bodyText2),
+                subtitle: Text(studentsLessonsInf.date[index],
+                    style: Theme.of(context).textTheme.caption),
+              );
+            },
+          ),
+        );
+      },
     );
   }
 }

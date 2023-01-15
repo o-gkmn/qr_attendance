@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:qr_attendance/api/api.dart';
 import 'package:qr_attendance/view/attendance/view/qr_camera_screen.dart';
+
+import '../cubit/attendance_cubit.dart';
 
 class AttendanceScreen extends StatelessWidget {
   const AttendanceScreen({super.key});
@@ -31,36 +35,44 @@ class AttendanceScreenView extends StatelessWidget {
 class _Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(top: MediaQuery.of(context).viewPadding.top),
-      height: MediaQuery.of(context).size.height * 0.22,
-      width: MediaQuery.of(context).size.width,
-      color: Theme.of(context).primaryColor,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+    return BlocBuilder<AttendanceCubit, AttendanceState>(
+      builder: (context, state) {
+      GeneralUserInf generalUserInf = const GeneralUserInf.empty();
+      if(state is AttendanceLoaded){
+        generalUserInf = state.generalUserInf;
+      }
+        return Container(
+          padding: EdgeInsets.only(top: MediaQuery.of(context).viewPadding.top),
+          height: MediaQuery.of(context).size.height * 0.22,
+          width: MediaQuery.of(context).size.width,
+          color: Theme.of(context).primaryColor,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              IconButton(
-                  onPressed: () => Navigator.pushNamed(context, "/faq"),
-                  icon: const Icon(Icons.help, color: Colors.white)),
-              IconButton(
-                  onPressed: () => Navigator.pushNamed(context, "/account"),
-                  icon: const Icon(Icons.person, color: Colors.white)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  IconButton(
+                      onPressed: () => Navigator.pushNamed(context, "/faq"),
+                      icon: const Icon(Icons.help, color: Colors.white)),
+                  IconButton(
+                      onPressed: () => Navigator.pushNamed(context, "/account"),
+                      icon: const Icon(Icons.person, color: Colors.white)),
+                ],
+              ),
+              const SizedBox(height: 10),
+              Text(
+                "${generalUserInf.name} ${generalUserInf.surname}",
+                style: Theme.of(context).textTheme.headline6,
+              ),
+              Text(
+                generalUserInf.department,
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
             ],
           ),
-          const SizedBox(height: 10),
-          Text(
-            "ÖZGÜR GÖKMEN",
-            style: Theme.of(context).textTheme.headline6,
-          ),
-          Text(
-            "Bilgisayar Mühendisliği",
-            style: Theme.of(context).textTheme.subtitle1,
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
@@ -99,4 +111,3 @@ class _Body extends StatelessWidget {
     );
   }
 }
-
