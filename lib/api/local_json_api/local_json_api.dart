@@ -47,14 +47,17 @@ class LocalJsonApi extends StudentApi {
      * model class is gave to jsonEncode and is returned string
      */
     try {
-      StudentsLessonsInf studentLessons = await getPastLessons(stdNo)..copyWith(pastLessons: <String>[], date: <String>[]);
-      http.put(Uri.parse("$baseURL$studentsLessonsInfEndpoint/1"),
-          headers: { "Content-Type" : "application/json"},
-          body: jsonEncode(studentLessons)).then((value) {
-            if(value.statusCode == 404){
-              throw NotFoundException();
-            }
-          });
+      StudentsLessonsInf studentLessons = await getPastLessons(stdNo).then(
+          (value) => value.copyWith(pastLessons: <String>[], date: <String>[]));
+      http
+          .put(Uri.parse("$baseURL$studentsLessonsInfEndpoint/1"),
+              headers: {"Content-Type": "application/json"},
+              body: jsonEncode(studentLessons))
+          .then((value) {
+        if (value.statusCode == 404) {
+          throw NotFoundException();
+        }
+      });
     } catch (e) {
       rethrow;
     }

@@ -23,4 +23,16 @@ class AttendanceCubit extends Cubit<AttendanceState> {
       StudentsLessonsInf studentsLessonsInf = await _studentRepository.getPastLessons(studentNo);
       emit(AttendanceLoaded(generalUserInf: generalUserInf, studentsLessonsInf: studentsLessonsInf));
   }
+
+  void deleteLessons() async {
+    /**
+     * This function was deleted all past lessons and dates
+     * First of all we will emit another state because we will reinitialize studentsLessonsInf
+     * After that we called deleteAllPastLessons method from _studentsRepository
+     * Finally we emit again StudentInfo
+     */
+    emit(AttendanceDelete());
+    await _studentRepository.deleteAllPastLessons(studentNo);
+    emitStudentInfo();
+  }
 }
