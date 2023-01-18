@@ -1,17 +1,32 @@
 part of 'attendance_cubit.dart';
 
-abstract class AttendanceState extends Equatable {
-  const AttendanceState();
+enum Status { inital, loading, succes, failure }
+
+class AttendanceState extends Equatable {
+  const AttendanceState(
+      {this.status = Status.inital,
+      this.studentInformation = const GeneralUserInf.empty(),
+      this.studentLessonsInformation = const StudentsLessonsInf.empty(),
+      this.exception});
+
+  final Status status;
+  final GeneralUserInf studentInformation;
+  final StudentsLessonsInf studentLessonsInformation;
+  final Exception? exception;
+
+  AttendanceState copyWith(
+      {Status? status,
+      GeneralUserInf? studentInformation,
+      StudentsLessonsInf? studentLessonsInformation,
+      Exception? exception}) {
+    return AttendanceState(
+        status: status ?? this.status,
+        studentInformation: studentInformation ?? this.studentInformation,
+        studentLessonsInformation:
+            studentLessonsInformation ?? this.studentLessonsInformation,
+        exception: exception ?? this.exception);
+  }
 
   @override
-  List<Object> get props => [];
-}
-
-class AttendanceInitial extends AttendanceState {}
-
-class AttendanceLoaded extends AttendanceState {
-  final GeneralUserInf generalUserInf;
-  final StudentsLessonsInf studentsLessonsInf;
-
-  const AttendanceLoaded({required this.studentsLessonsInf, required this.generalUserInf});
+  List<Object> get props => [status, studentInformation, studentLessonsInformation];
 }

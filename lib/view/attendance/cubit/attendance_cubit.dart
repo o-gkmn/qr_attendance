@@ -10,29 +10,54 @@ class AttendanceCubit extends Cubit<AttendanceState> {
   AttendanceCubit(
       {required StudentRepository studentRepository, required this.studentNo})
       : _studentRepository = studentRepository,
-        super(AttendanceInitial());
+        super(const AttendanceState(status: Status.inital));
 
   final StudentRepository _studentRepository;
 
-  void emitStudentInfo() async {
+  void fetchStudentInfoAndLessonsData() async {
     /**
      * This function gets user information and student's lessons information from repository
-     * After that emittin AttendanceLoaded state
      */
-      GeneralUserInf generalUserInf = await _studentRepository.getUserInf(studentNo);
-      StudentsLessonsInf studentsLessonsInf = await _studentRepository.getPastLessons(studentNo);
-      emit(AttendanceLoaded(generalUserInf: generalUserInf, studentsLessonsInf: studentsLessonsInf));
+    emit(state.copyWith(status: Status.loading));
+
+    try {
+      GeneralUserInf generalUserInf =
+          await _studentRepository.getUserInf(studentNo);
+      StudentsLessonsInf studentsLessonsInf =
+          await _studentRepository.getPastLessons(studentNo);
+      emit(state.copyWith(
+          status: Status.succes,
+          studentInformation: generalUserInf,
+          studentLessonsInformation: studentsLessonsInf));
+    } on Exception catch (e) {
+      emit(state.copyWith(status: Status.failure, exception: e));
+    }
   }
 
   void deleteLessons() async {
     /**
      * This function was deleted all past lessons and dates
-     * First of all we will emit another state because we will reinitialize studentsLessonsInf
-     * After that we called deleteAllPastLessons method from _studentsRepository
-     * Finally we emit again StudentInfo
      */
-    emit(AttendanceDelete());
     await _studentRepository.deleteAllPastLessons(studentNo);
-    emitStudentInfo();
+    fetchStudentInfoAndLessonsData();
+  }
+
+  void updateSort() {
+    /**
+     * This function sorts lesoons list
+     */
+    if(state.studentLessonsInformation.pastLessons.isEmpty){
+      return;
+    }
+    List<String> resortedLessonsDate =
+        state.studentLessonsInformation.date.reversed.toList();
+    List<String> resortedLessons =
+        state.studentLessonsInformation.pastLessons.reversed.toList();
+
+    StudentsLessonsInf resortedStudentsLessonInf = state
+        .studentLessonsInformation
+        .copyWith(date: resortedLessonsDate, pastLessons: resortedLessons);
+
+    emit(state.copyWith(studentLessonsInformation: resortedStudentsLessonInf));
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:qr_attendance/api/api.dart';
 import 'package:qr_attendance/view/attendance/view/qr_camera_screen.dart';
 
 import '../cubit/attendance_cubit.dart';
@@ -10,8 +9,31 @@ class AttendanceScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: AttendanceScreenView(),
+    return Scaffold(
+      body: BlocConsumer<AttendanceCubit, AttendanceState>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          return BlocBuilder<AttendanceCubit, AttendanceState>(
+            builder: (context, state) {
+              switch (state.status) {
+                case Status.loading:
+                  return Column(
+                    children: [
+                      _Header(),
+                      const Spacer(flex: 1),
+                      const CircularProgressIndicator(),
+                      const Spacer(flex: 1)
+                    ],
+                  );
+                case Status.inital:
+                case Status.succes:
+                case Status.failure:
+                  return const AttendanceScreenView();
+              }
+            },
+          );
+        },
+      ),
     );
   }
 }
@@ -37,10 +59,6 @@ class _Header extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AttendanceCubit, AttendanceState>(
       builder: (context, state) {
-      GeneralUserInf generalUserInf = const GeneralUserInf.empty();
-      if(state is AttendanceLoaded){
-        generalUserInf = state.generalUserInf;
-      }
         return Container(
           padding: EdgeInsets.only(top: MediaQuery.of(context).viewPadding.top),
           height: MediaQuery.of(context).size.height * 0.22,
@@ -62,11 +80,11 @@ class _Header extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               Text(
-                "${generalUserInf.name} ${generalUserInf.surname}",
+                "${state.studentInformation.name} ${state.studentInformation.surname}",
                 style: Theme.of(context).textTheme.headline6,
               ),
               Text(
-                generalUserInf.department,
+                state.studentInformation.department,
                 style: Theme.of(context).textTheme.subtitle1,
               ),
             ],

@@ -27,7 +27,7 @@ class TabSelectionView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder(
-      bloc: BlocProvider.of<AttendanceCubit>(context)..emitStudentInfo(),
+      bloc: BlocProvider.of<AttendanceCubit>(context)..fetchStudentInfoAndLessonsData(),
       builder: (context, state) {
         return DefaultTabController(
           length: 2,

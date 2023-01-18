@@ -16,11 +16,11 @@ class StudentsLessonsInf extends Equatable {
       required this.pastLessons,
       required this.date});
 
-  StudentsLessonsInf.empty()
+  const StudentsLessonsInf.empty()
       : stdNo = "",
-        lessonsLearned = <String>[],
-        pastLessons = <String>[],
-        date = <String>[];
+        lessonsLearned = const <String>[],
+        pastLessons = const <String>[],
+        date = const <String>[];
 
   StudentsLessonsInf copyWith(
       {String? stdNo,
