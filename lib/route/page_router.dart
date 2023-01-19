@@ -7,14 +7,14 @@ import 'package:qr_attendance/view/login/login.dart';
 class PageRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case "/login":
+      case "/":
         return MaterialPageRoute(builder: (_) => const LoginScreen());
       case "/attendance":
         return MaterialPageRoute(builder: (_) => TabSelection(studentNo: settings.arguments as String));
       case "/faq":
         return MaterialPageRoute(builder: (_) => const FAQScreen());
       case "/account":
-        return MaterialPageRoute(builder: (_) => const AccountScreen());
+        return MaterialPageRoute(builder: (_) => AccountScreen(studentNo: settings.arguments as String,));
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

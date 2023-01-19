@@ -74,7 +74,7 @@ class _Header extends StatelessWidget {
                       onPressed: () => Navigator.pushNamed(context, "/faq"),
                       icon: const Icon(Icons.help, color: Colors.white)),
                   IconButton(
-                      onPressed: () => Navigator.pushNamed(context, "/account"),
+                      onPressed: () => Navigator.pushNamed(context, "/account", arguments: context.read<AttendanceCubit>().studentNo),
                       icon: const Icon(Icons.person, color: Colors.white)),
                 ],
               ),

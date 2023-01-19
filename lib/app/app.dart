@@ -18,7 +18,6 @@ class App extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: customTheme.themeData,
         onGenerateRoute: PageRouter.generateRoute,
-        initialRoute: "/login",
       ),
     );
   }

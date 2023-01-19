@@ -79,7 +79,7 @@ class LocalJsonApi extends StudentApi {
       if (response.statusCode == 200) {
         List pastLessonsList = jsonDecode(response.body);
         if (pastLessonsList.isEmpty) {
-          return StudentsLessonsInf.empty();
+          return const StudentsLessonsInf.empty();
         }
         StudentsLessonsInf studentsLessonsInf =
             StudentsLessonsInf.fromJson(pastLessonsList.first);

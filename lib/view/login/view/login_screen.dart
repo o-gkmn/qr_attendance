@@ -17,7 +17,7 @@ class LoginScreen extends StatelessWidget {
       child: BlocListener<LoginCubit, LoginState>(
         listener: (context, state) {
           if (state is LoginAuthenticationSucced) {
-              Navigator.popAndPushNamed(context, "/attendance", arguments: state.userLoginInf.stdNo);
+              Navigator.pushReplacementNamed(context, "/attendance", arguments: state.userLoginInf.stdNo);
           }
           if(state is LoginAuthenticationFailed){
               showDialog(
