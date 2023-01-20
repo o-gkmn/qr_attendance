@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:qr_attendance/api/models/students_lessons_inf/students_lessons_inf.dart';
 
-import '../cubit/attendance_cubit.dart';
+import '../attendance.dart';
+
 
 class HistoryScreen extends StatelessWidget {
   const HistoryScreen({super.key});

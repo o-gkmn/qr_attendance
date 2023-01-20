@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_attendance/api/api.dart';
-import 'package:qr_attendance/route/page_router.dart';
-import 'package:qr_attendance/view/account/cubit/account_cubit.dart';
+import 'package:qr_attendance/view/account/account.dart';
 import 'package:qr_attendance/view/attendance/cubit/cubit.dart';
 
 class AccountScreen extends StatelessWidget {

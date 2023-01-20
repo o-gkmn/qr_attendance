@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:qr_attendance/view/attendance/view/qr_camera_screen.dart';
 
-import '../cubit/attendance_cubit.dart';
+import '../attendance.dart';
+
 
 class AttendanceScreen extends StatelessWidget {
   const AttendanceScreen({super.key});

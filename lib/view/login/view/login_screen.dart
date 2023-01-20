@@ -2,9 +2,9 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_attendance/api/repository/student_repository.dart';
-import 'package:qr_attendance/view/login/cubit/login_cubit.dart';
-import 'package:qr_attendance/view/login/validation/login_validation.dart';
 import 'package:qr_attendance/view/widgets/src/custom_alert_dialog.dart';
+
+import '../login.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});

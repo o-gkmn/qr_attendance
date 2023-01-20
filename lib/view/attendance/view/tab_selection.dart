@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_attendance/api/api.dart';
-import 'package:qr_attendance/view/attendance/cubit/attendance_cubit.dart';
 
 import '../attendance.dart';
 
