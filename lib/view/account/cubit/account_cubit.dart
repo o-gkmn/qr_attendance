@@ -22,7 +22,7 @@ class AccountCubit extends Cubit<AccountState> {
       emit(state.copyWith(
           status: Status.succes, studentInformation: studentInformation));
     } on Exception catch (e) {
-      emit(state.copyWith(exception: e));
+      emit(state.copyWith(status:Status.failure, exception: e));
     }
   }
 }
