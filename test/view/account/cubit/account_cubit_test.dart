@@ -2,7 +2,6 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:qr_attendance/api/api.dart';
-import 'package:qr_attendance/api/repository/student_repository.dart';
 import 'package:qr_attendance/view/account/cubit/cubit.dart';
 import 'package:qr_attendance/view/attendance/attendance.dart';
 
