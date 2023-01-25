@@ -104,4 +104,13 @@ void main() {
       },
     );
   });
+
+  group("updateSort", () {
+    blocTest<AttendanceCubit, AttendanceState>(
+      'emits [] when updateSort is called with empty lists.',
+      build: () => attendanceCubit,
+      act: (cubit) => cubit.updateSort(),
+      expect: () => <AttendanceState>[],
+    );
+  });
 }
