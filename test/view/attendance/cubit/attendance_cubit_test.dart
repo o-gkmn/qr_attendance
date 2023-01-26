@@ -9,6 +9,18 @@ class MockStudentRepository extends Mock implements StudentRepository {}
 void main() {
   late MockStudentRepository mockStudentRepository;
   late AttendanceCubit attendanceCubit;
+  const GeneralUserInf generalUserInf = GeneralUserInf(
+      name: "name",
+      surname: "surname",
+      stdNo: "200404006",
+      faculty: "faculty",
+      department: "department",
+      stdClass: "stdClass");
+  const StudentsLessonsInf studentsLessonsInf = StudentsLessonsInf(
+      stdNo: "200404006",
+      lessonsLearned: <String>["a"],
+      pastLessons: <String>["b", "a"],
+      date: <String>["c", "d"]);
 
   setUp(() {
     mockStudentRepository = MockStudentRepository();
@@ -17,19 +29,6 @@ void main() {
   });
 
   group("fetchStudentInfoAndLessonsData", () {
-    const GeneralUserInf generalUserInf = GeneralUserInf(
-        name: "name",
-        surname: "surname",
-        stdNo: "200404006",
-        faculty: "faculty",
-        department: "department",
-        stdClass: "stdClass");
-    const StudentsLessonsInf studentsLessonsInf = StudentsLessonsInf(
-        stdNo: "200404006",
-        lessonsLearned: <String>["a"],
-        pastLessons: <String>["b"],
-        date: <String>["c"]);
-
     final Exception tException = Exception('Failed to fetch goals.');
 
     blocTest<AttendanceCubit, AttendanceState>(
@@ -111,6 +110,22 @@ void main() {
       build: () => attendanceCubit,
       act: (cubit) => cubit.updateSort(),
       expect: () => <AttendanceState>[],
+    );
+
+    blocTest(
+      "emits [AttendanceState] with reversed date and pastLessons list in StudentLessonsInformation in AttendanceState",
+      build: () => attendanceCubit,
+      seed: () => const AttendanceState(
+          status: Status.succes,
+          studentLessonsInformation: studentsLessonsInf,
+          studentInformation: generalUserInf),
+      act: (cubit) => cubit.updateSort(),
+      expect: () => <AttendanceState>[
+        attendanceCubit.state.copyWith(
+            studentLessonsInformation: studentsLessonsInf.copyWith(
+                date: studentsLessonsInf.date.reversed.toList(),
+                pastLessons: studentsLessonsInf.pastLessons.reversed.toList()))
+      ],
     );
   });
 }
