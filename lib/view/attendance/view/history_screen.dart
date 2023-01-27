@@ -79,7 +79,7 @@ class _Header extends StatelessWidget {
             const Spacer(flex: 1),
             Center(
               child:
-                  Text("Geçmiş", style: Theme.of(context).textTheme.headline6),
+                  Text("Geçmiş", style: Theme.of(context).textTheme.titleLarge),
             ),
             const Spacer(flex: 3)
           ],
@@ -101,9 +101,9 @@ class _Body extends StatelessWidget {
             itemBuilder: (context, index) {
               return ListTile(
                 title: Text(state.studentLessonsInformation.pastLessons[index],
-                    style: Theme.of(context).textTheme.bodyText2),
+                    style: Theme.of(context).textTheme.bodyMedium),
                 subtitle: Text(state.studentLessonsInformation.date[index],
-                    style: Theme.of(context).textTheme.caption),
+                    style: Theme.of(context).textTheme.bodySmall),
               );
             },
           ),

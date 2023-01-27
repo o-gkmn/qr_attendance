@@ -34,10 +34,10 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
             Icon(
               Icons.warning,
               size: 48.0,
-              color: Theme.of(context).errorColor,
+              color: Theme.of(context).colorScheme.error,
             ),
             const Spacer(flex: 1),
-            Text(widget.alertText, style: Theme.of(context).textTheme.subtitle2,),
+            Text(widget.alertText, style: Theme.of(context).textTheme.titleSmall,),
             const Spacer(flex: 1),
             ElevatedButton(
                 onPressed: () => Navigator.pop(context),

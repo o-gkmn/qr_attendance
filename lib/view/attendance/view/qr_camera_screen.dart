@@ -109,13 +109,13 @@ class _TextsField extends StatelessWidget {
               "QR Kodu Okutun",
               style: Theme.of(context)
                   .textTheme
-                  .headline6!
+                  .titleLarge!
                   .copyWith(color: Colors.black, fontSize: 16),
             ),
             const Spacer(flex: 1),
             Text(
               "Qr kodunu belirlenen alana ortalayacak şekilde hizalayın",
-              style: Theme.of(context).textTheme.caption,
+              style: Theme.of(context).textTheme.bodySmall,
               textAlign: TextAlign.center,
             ),
             const Spacer(

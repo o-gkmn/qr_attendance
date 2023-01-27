@@ -10,11 +10,11 @@ class CustomThemeData {
     //     (isDark ? ThemeData.dark() : ThemeData.light()).textTheme;
 
     TextTheme textTheme = const TextTheme(
-      headline6: TextStyle(color: Colors.white),
-      headline5: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-      subtitle1: TextStyle(color: Colors.white, fontSize: 14),
-      subtitle2: TextStyle(color: Color(0xff30638E), fontSize: 14, fontWeight: FontWeight.bold),
-      bodyText2: TextStyle(color: Color(0xff000000), fontSize: 14)
+      titleLarge: TextStyle(color: Colors.white),
+      headlineSmall: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+      titleMedium: TextStyle(color: Colors.white, fontSize: 14),
+      titleSmall: TextStyle(color: Color(0xff30638E), fontSize: 14, fontWeight: FontWeight.bold),
+      bodyMedium: TextStyle(color: Color(0xff000000), fontSize: 14)
       );
 
     ColorScheme colorScheme = ColorScheme(

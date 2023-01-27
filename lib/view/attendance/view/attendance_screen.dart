@@ -81,11 +81,11 @@ class _Header extends StatelessWidget {
               const SizedBox(height: 10),
               Text(
                 "${state.studentInformation.name} ${state.studentInformation.surname}",
-                style: Theme.of(context).textTheme.headline6,
+                style: Theme.of(context).textTheme.titleLarge,
               ),
               Text(
                 state.studentInformation.department,
-                style: Theme.of(context).textTheme.subtitle1,
+                style: Theme.of(context).textTheme.titleMedium,
               ),
             ],
           ),
@@ -123,7 +123,7 @@ class _Body extends StatelessWidget {
             color: Theme.of(context).primaryColor,
           ),
           Text("Okutmak için tıklayın",
-              style: Theme.of(context).textTheme.subtitle2),
+              style: Theme.of(context).textTheme.titleSmall),
         ],
       ),
     );

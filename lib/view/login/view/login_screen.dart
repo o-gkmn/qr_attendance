@@ -107,7 +107,7 @@ class _BiruniLogoState extends State<_BiruniLogo>
             "Oturum Açın",
             style: Theme.of(context)
                 .textTheme
-                .headline6!
+                .headlineSmall!
                 .copyWith(color: Colors.black),
           ),
         ],
@@ -145,7 +145,7 @@ class _LogiFormState extends State<_LoginForm> {
         ),
         errorBorder: OutlineInputBorder(
           borderSide:
-              BorderSide(color: Theme.of(context).errorColor, width: 3.0),
+              BorderSide(color: Theme.of(context).colorScheme.error, width: 3.0),
           borderRadius: BorderRadius.circular(12.0),
         ),
         labelText: "Email",
@@ -174,7 +174,7 @@ class _LogiFormState extends State<_LoginForm> {
         ),
         errorBorder: OutlineInputBorder(
           borderSide:
-              BorderSide(color: Theme.of(context).errorColor, width: 3.0),
+              BorderSide(color: Theme.of(context).colorScheme.error, width: 3.0),
           borderRadius: BorderRadius.circular(12.0),
         ),
         labelText: "Şifre",
