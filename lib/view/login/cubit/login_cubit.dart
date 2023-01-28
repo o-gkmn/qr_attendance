@@ -9,7 +9,7 @@ class LoginCubit extends Cubit<LoginState> {
 
   LoginCubit({required StudentRepository studentRepository})
       : _studentRepository = studentRepository,
-        super(LoginInitial());
+        super(const LoginState(status: LoginStatus.inital));
 
   authentication(String mail, String pass) async {
     /**
@@ -18,14 +18,22 @@ class LoginCubit extends Cubit<LoginState> {
      * then if stdNo is empty login is failed
      * if stdNo isn't empty then should be success
      */
-    UserLoginInf userLoginInf = await _studentRepository.controlUserLoginInf(mail, pass);
-    if(userLoginInf.stdNo.isEmpty){
-      emit(LoginAuthenticationFailed());
+    UserLoginInf userLoginInf;
+    try {
+      userLoginInf = await _studentRepository.controlUserLoginInf(mail, pass);
+    } catch (e) {
+      emit(LoginState(status: LoginStatus.error, exception: e as Exception));
+      return;
     }
-    if(userLoginInf.stdNo.isNotEmpty){
-      emit(LoginAuthenticationSucced(userLoginInf: userLoginInf));
+
+    if (userLoginInf.stdNo.isEmpty) {
+      emit(const LoginState(status: LoginStatus.denied));
+    }
+    if (userLoginInf.stdNo.isNotEmpty) {
+      emit(LoginState(
+          status: LoginStatus.confirmed, userLoginInf: userLoginInf));
     }
   }
 
-  setStatusWaited() => emit(LoginAuthenticationWaiting());
+  setStatusWaited() => emit(const LoginState(status: LoginStatus.error));
 }

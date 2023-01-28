@@ -1,22 +1,17 @@
 part of 'login_cubit.dart';
 
-abstract class LoginState extends Equatable {
-  const LoginState();
+enum LoginStatus { inital, confirmed, denied, error }
+
+class LoginState extends Equatable {
+  final LoginStatus status;
+  final UserLoginInf userLoginInf;
+  final Exception? exception;
+
+  const LoginState(
+      {required this.status,
+      this.userLoginInf = const UserLoginInf.empty(),
+      this.exception});
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [status, userLoginInf];
 }
-
-class LoginInitial extends LoginState {}
-
-class LoginAuthenticationWaiting extends LoginState {}
-
-class LoginAuthenticationSucced extends LoginState {
-  final UserLoginInf userLoginInf;
-
-  const LoginAuthenticationSucced({required this.userLoginInf});
-}
-
-class LoginAuthenticationFailed extends LoginState {}
-
-class LoginError extends LoginState {}

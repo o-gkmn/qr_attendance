@@ -16,16 +16,25 @@ class LoginScreen extends StatelessWidget {
           studentRepository: RepositoryProvider.of<StudentRepository>(context)),
       child: BlocListener<LoginCubit, LoginState>(
         listener: (context, state) {
-          if (state is LoginAuthenticationSucced) {
-              Navigator.pushReplacementNamed(context, "/attendance", arguments: state.userLoginInf.stdNo);
+          if (state.status == LoginStatus.confirmed) {
+            Navigator.pushReplacementNamed(context, "/attendance",
+                arguments: state.userLoginInf.stdNo);
           }
-          if(state is LoginAuthenticationFailed){
-              showDialog(
-                context: context,
-                builder: (context) => const CustomAlertDialog(
-                    alertText: "Hatalı posta veya şifre girdiniz"),
-              );
-              context.read<LoginCubit>().setStatusWaited();
+          if (state.status == LoginStatus.denied) {
+            showDialog(
+              context: context,
+              builder: (context) => const CustomAlertDialog(
+                  alertText: "Hatalı posta veya şifre girdiniz"),
+            );
+            context.read<LoginCubit>().setStatusWaited();
+          }
+          if (state.status == LoginStatus.error) {
+            showDialog(
+              context: context,
+              builder: (context) => CustomAlertDialog(
+                  alertText: state.exception.toString()),
+            );
+            context.read<LoginCubit>().setStatusWaited();
           }
         },
         child: Scaffold(
@@ -144,8 +153,8 @@ class _LogiFormState extends State<_LoginForm> {
           borderRadius: BorderRadius.circular(12.0),
         ),
         errorBorder: OutlineInputBorder(
-          borderSide:
-              BorderSide(color: Theme.of(context).colorScheme.error, width: 3.0),
+          borderSide: BorderSide(
+              color: Theme.of(context).colorScheme.error, width: 3.0),
           borderRadius: BorderRadius.circular(12.0),
         ),
         labelText: "Email",
@@ -173,8 +182,8 @@ class _LogiFormState extends State<_LoginForm> {
           borderRadius: BorderRadius.circular(12.0),
         ),
         errorBorder: OutlineInputBorder(
-          borderSide:
-              BorderSide(color: Theme.of(context).colorScheme.error, width: 3.0),
+          borderSide: BorderSide(
+              color: Theme.of(context).colorScheme.error, width: 3.0),
           borderRadius: BorderRadius.circular(12.0),
         ),
         labelText: "Şifre",
@@ -224,7 +233,8 @@ class _LogiFormState extends State<_LoginForm> {
                       alertText: loginValidation.errorMsg,
                     ));
           }
-          context.read<LoginCubit>().authentication(_mailController.value.text, _passwordController.value.text);
+          context.read<LoginCubit>().authentication(
+              _mailController.value.text, _passwordController.value.text);
         },
         child: const Text("Giriş Yap"),
       ),
