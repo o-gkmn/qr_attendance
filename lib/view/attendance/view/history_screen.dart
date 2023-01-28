@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:qr_attendance/view/widgets/src/custom_alert_dialog.dart';
 
 import '../attendance.dart';
-
 
 class HistoryScreen extends StatelessWidget {
   const HistoryScreen({super.key});
@@ -11,7 +11,14 @@ class HistoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: BlocConsumer<AttendanceCubit, AttendanceState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state.status == Status.failure) {
+          showDialog(
+              context: context,
+              builder: (context) =>
+                  CustomAlertDialog(alertText: state.exception.toString()));
+        }
+      },
       builder: (context, state) {
         return BlocBuilder<AttendanceCubit, AttendanceState>(
           builder: (context, state) {

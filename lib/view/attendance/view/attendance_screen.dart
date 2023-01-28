@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:qr_attendance/view/widgets/widgets.dart';
 
 import '../attendance.dart';
-
 
 class AttendanceScreen extends StatelessWidget {
   const AttendanceScreen({super.key});
@@ -11,7 +11,14 @@ class AttendanceScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocConsumer<AttendanceCubit, AttendanceState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state.status == Status.failure) {
+            showDialog(
+                context: context,
+                builder: (context) =>
+                    CustomAlertDialog(alertText: state.exception.toString()));
+          }
+        },
         builder: (context, state) {
           return BlocBuilder<AttendanceCubit, AttendanceState>(
             builder: (context, state) {
@@ -74,7 +81,8 @@ class _Header extends StatelessWidget {
                       onPressed: () => Navigator.pushNamed(context, "/faq"),
                       icon: const Icon(Icons.help, color: Colors.white)),
                   IconButton(
-                      onPressed: () => Navigator.pushNamed(context, "/account", arguments: context.read<AttendanceCubit>().studentNo),
+                      onPressed: () => Navigator.pushNamed(context, "/account",
+                          arguments: context.read<AttendanceCubit>().studentNo),
                       icon: const Icon(Icons.person, color: Colors.white)),
                 ],
               ),
