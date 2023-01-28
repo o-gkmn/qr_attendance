@@ -45,7 +45,7 @@ void main() {
         });
 
     blocTest(
-        "emit [Status.loading, Status.succed] when fetchStudentInformation() failed",
+        "emits [Status.loading, Status.succed] when fetchStudentInformation() failed",
         setUp: () => when((() =>
                 mockStudentRepository.getUserInf(accountCubit.studentNo)))
             .thenThrow(tException),

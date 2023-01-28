@@ -9,7 +9,7 @@ class LoginCubit extends Cubit<LoginState> {
 
   LoginCubit({required StudentRepository studentRepository})
       : _studentRepository = studentRepository,
-        super(const LoginState(status: LoginStatus.inital));
+        super(const LoginState(status: LoginStatus.initial));
 
   authentication(String mail, String pass) async {
     /**
@@ -35,5 +35,5 @@ class LoginCubit extends Cubit<LoginState> {
     }
   }
 
-  setStatusWaited() => emit(const LoginState(status: LoginStatus.error));
+  setStatusInital() => emit(const LoginState(status: LoginStatus.initial));
 }

@@ -26,7 +26,7 @@ class LoginScreen extends StatelessWidget {
               builder: (context) => const CustomAlertDialog(
                   alertText: "Hatalı posta veya şifre girdiniz"),
             );
-            context.read<LoginCubit>().setStatusWaited();
+            context.read<LoginCubit>().setStatusInital();
           }
           if (state.status == LoginStatus.error) {
             showDialog(
@@ -34,7 +34,7 @@ class LoginScreen extends StatelessWidget {
               builder: (context) => CustomAlertDialog(
                   alertText: state.exception.toString()),
             );
-            context.read<LoginCubit>().setStatusWaited();
+            context.read<LoginCubit>().setStatusInital();
           }
         },
         child: Scaffold(
