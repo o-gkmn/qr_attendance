@@ -26,30 +26,26 @@ class TabSelectionView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder(
-      bloc: BlocProvider.of<AttendanceCubit>(context)..fetchStudentInfoAndLessonsData(),
+      bloc: BlocProvider.of<AttendanceCubit>(context)
+        ..fetchStudentInfoAndLessonsData(),
       builder: (context, state) {
         return DefaultTabController(
           length: 2,
           child: Scaffold(
-            bottomNavigationBar: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 22),
-              child: TabBar(
-                  labelColor: Colors.white,
-                  unselectedLabelColor: Colors.grey,
-                  indicatorColor: Theme.of(context).primaryColor,
-                  indicator: BoxDecoration(
-                      color: Theme.of(context).primaryColor,
-                      borderRadius: BorderRadius.circular(30)),
-                  tabs: const [
-                    Tab(
-                        icon: Icon(Icons.qr_code_scanner),
-                        text: "QR",
-                        iconMargin: EdgeInsets.all(0)),
-                    Tab(
-                        icon: Icon(Icons.person),
-                        text: "Geçmiş",
-                        iconMargin: EdgeInsets.all(0))
-                  ]),
+            bottomNavigationBar: TabBar(
+              labelColor: Theme.of(context).primaryColor,
+              unselectedLabelColor: Colors.grey.shade300,
+              indicatorColor: Theme.of(context).primaryColor,
+              tabs: const [
+                Tab(
+                    icon: Icon(Icons.qr_code_scanner),
+                    text: "QR",
+                    iconMargin: EdgeInsets.all(0)),
+                Tab(
+                    icon: Icon(Icons.person),
+                    text: "Geçmiş",
+                    iconMargin: EdgeInsets.all(0))
+              ],
             ),
             body: const TabBarView(
               children: [
